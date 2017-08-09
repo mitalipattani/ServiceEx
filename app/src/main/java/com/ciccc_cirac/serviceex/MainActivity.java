@@ -103,38 +103,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 i.putExtra("seconds", secondstoSleep);
                 startService(i);
                 break;
-//            case R.id.buttonHandler:
-//                Toast.makeText(getBaseContext(), "Handler Start",
-//                        Toast.LENGTH_LONG).show();
-//                startProgress();
-//                break;
+
         }
     }
-//    public void startProgress()
-//    {
-//            new Thread(new Task()).start();
-//    }
-//
-//
-//     class Task implements Runnable{
-//         @Override
-//         public void run() {
-//             for (int i = 0; i <= 20; i++) {
-//                 final int value = i;
-//                 try {
-//                     Thread.sleep(1000);
-//                 } catch (InterruptedException e) {
-//                     e.printStackTrace();
-//                 }
-//                 handler.post(new Runnable() {
-//                     @Override
-//                     public void run() {
-//                         progressBar.setProgress(value);
-//                     }
-//                 });
-//             }
-//         }
-//     }
+
 
 
 }
