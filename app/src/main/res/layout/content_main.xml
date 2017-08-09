@@ -32,6 +32,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="Next Page" />
+        android:text="service to sleep a thread" />
+
+    <EditText
+        android:id="@+id/editSeconds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonNext"
+        android:layout_marginTop="42dp"
+        android:hint="seconds to sleep"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonIntent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editSeconds"
+        android:layout_marginTop="28dp"
+        android:text="start Intent Service"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

@@ -10,9 +10,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
-    Button buttonStart, buttonStop,buttonNext;
+    Button buttonStart, buttonStop,buttonNext,buttonIntent;
+    EditText sleepTime;
+    Long secondstoSleep;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +34,18 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         });
         setContentView(R.layout.activity_main);
 
+
         buttonStart = (Button) findViewById(R.id.buttonStart);
         buttonStop = (Button) findViewById(R.id.buttonStop);
         buttonNext = (Button) findViewById(R.id.buttonNext);
+        buttonIntent = (Button) findViewById(R.id.buttonIntent);
+        sleepTime = (EditText)findViewById(R.id.editSeconds);
 
         buttonStart.setOnClickListener(this);
         buttonStop.setOnClickListener(this);
         buttonNext.setOnClickListener(this);
+        buttonIntent.setOnClickListener(this);
+
     }
 
     @Override
@@ -73,10 +82,19 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 stopService(i);
                 break;
             case R.id.buttonNext:
-                i = new Intent(this,NextClass.class);
-                startActivity(i);
+                secondstoSleep = Long.parseLong(sleepTime.getText().toString());
+                i = new Intent(this,Myservice.class);
+                i.putExtra("seconds",secondstoSleep);
+                startService(i);
+                break;
+            case R.id.buttonIntent:
+                secondstoSleep = Long.parseLong(sleepTime.getText().toString());
+                i = new Intent(this,Sleeper.class);
+                i.putExtra("seconds",secondstoSleep);
+                startService(i);
                 break;
         }
 
     }
+
 }

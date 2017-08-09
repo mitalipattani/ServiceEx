@@ -2,11 +2,14 @@ package com.ciccc_cirac.serviceex;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 /**
  * Created by CICCC-CIRAC on 2017-08-08.
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 public class Myservice extends Service {
     MediaPlayer myPlayer;
+    long seconds;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -23,14 +27,19 @@ public class Myservice extends Service {
     public void onCreate() {
         super.onCreate();
         Toast.makeText(this, "Service Created", Toast.LENGTH_LONG).show();
-        myPlayer = MediaPlayer.create(this, R.raw.music1);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-        myPlayer.start();
-        stopSelf();
+        seconds = intent.getExtras().getLong("seconds");
+        long milliSeconds = seconds * 1000;
+
+        try {
+            Thread.sleep(milliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -38,6 +47,6 @@ public class Myservice extends Service {
     public void onDestroy() {
         super.onDestroy();
         Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
-        myPlayer.stop();
+       // myPlayer.stop();
     }
 }

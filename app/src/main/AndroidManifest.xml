@@ -25,6 +25,8 @@
         <service
             android:name=".Myservice"
             android:enabled="true" />
+        <service android:name=".Sleeper"
+            android:enabled="true"/>
     </application>
 
 
